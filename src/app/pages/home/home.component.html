@@ -1,0 +1,27 @@
+<div class="px-8 md:p-16 flex flex-col lg:flex-row lg:gap-8 justify-between">
+  <div>
+    <h1 class="text-preset1 text-rose_900">Desserts</h1>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-3 gap-4">
+      @for (product of products$ | async; track $index) {
+
+      <app-card [product]="product"></app-card>
+      }
+    </div>
+  </div>
+
+  <!--------------------------- Cart ------------------->
+  <div>
+    <div class="bg-white min-w-[384px] rounded-md p-8">
+      <h1>Your Cart (0)</h1>
+      <img
+        src="assets/images/illustration-empty-cart.svg"
+        alt="empty cart"
+        class="mx-auto"
+      />
+      <h1 class="text-rose_500 text-preset4 text-center">
+        Your added items will appear here
+      </h1>
+    </div>
+  </div>
+</div>
