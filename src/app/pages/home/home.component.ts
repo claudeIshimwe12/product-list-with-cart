@@ -24,4 +24,7 @@ export class HomeComponent implements OnInit {
   handleOrderConfirmation() {
     this.isOrderConfirmed = !this.isOrderConfirmed;
   }
+  placeNewOrder() {
+    this.isOrderConfirmed = !this.isOrderConfirmed;
+  }
 }

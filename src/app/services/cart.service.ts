@@ -106,4 +106,9 @@ export class CartService {
       })
     );
   }
+
+  emptyCart() {
+    this.cartSubject.next([]);
+    this.totoalSubject.next(0);
+  }
 }

@@ -20,8 +20,10 @@
   </div>
 
   @if (isOrderConfirmed) {
-  <div class="fixed h-screen w-full top-24 bg-transparent z-50 p-4">
-    <app-order-confirmation></app-order-confirmation>
+  <div class="fixed h-screen w-full top-16 lg:top-8 bg-transparent z-50 md:p-4">
+    <app-order-confirmation
+      (cartEmpty)="placeNewOrder()"
+    ></app-order-confirmation>
   </div>
   <div class="bg-black opacity-50 w-full h-full absolute top-0 z-10"></div>
   }

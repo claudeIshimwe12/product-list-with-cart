@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Cart } from '../../model/cart.interface';
 import { CartService } from '../../services/cart.service';
@@ -9,10 +9,16 @@ import { CartService } from '../../services/cart.service';
   styleUrl: './order-confirmation.component.css',
 })
 export class OrderConfirmationComponent {
+  @Output() cartEmpty: EventEmitter<any> = new EventEmitter();
   cart$!: Observable<Cart[]>;
   totalPrice$!: Observable<number>;
   constructor(private cartService: CartService) {
     this.cart$ = this.cartService.getCartProducts();
     this.totalPrice$ = this.cartService.getTotal();
+  }
+
+  onStartNewOrder() {
+    this.cartService.emptyCart();
+    this.cartEmpty.emit();
   }
 }

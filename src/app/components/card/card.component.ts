@@ -3,6 +3,8 @@ import { Product } from '../../model/product.interface';
 import { ScreenService } from '../../services/window.service';
 import { EventEmitter } from '@angular/core';
 import { CartService } from '../../services/cart.service';
+import { Observable } from 'rxjs';
+import { Cart } from '../../model/cart.interface';
 
 @Component({
   selector: 'app-card',
@@ -14,11 +16,14 @@ export class CardComponent implements OnInit {
   quantity: number = 1;
   screenSize!: number;
   showQuantityChanger: boolean = false;
+  product$!: Observable<Cart[]>;
 
   constructor(
     private screenService: ScreenService,
     private cartService: CartService
-  ) {}
+  ) {
+    this.product$ = this.cartService.getCartProducts();
+  }
 
   ngOnInit(): void {
     this.screenSize = this.screenService.getScreenWidth();
