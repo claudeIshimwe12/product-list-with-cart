@@ -1,31 +1,71 @@
-<div class="lg:w-[250.67px] md:w-[218.33px] w-full">
+<div>
   <div class="flex flex-col gap-4 items-center relative">
     @if (screenSize <= 480) {
     <img
       [src]="product.image.mobile"
       alt="image of product"
-      class="rounded-lg w-full"
+      [ngClass]="{
+        'rounded-lg': true,
+        'w-full': true,
+        border: showQuantityChanger,
+        'border-red': showQuantityChanger
+      }"
     />
     } @else if (screenSize > 480 && screenSize <= 1024) {
     <img
       [src]="product.image.tablet"
       alt="image of product"
-      class="rounded-lg w-full"
+      [ngClass]="{
+        'rounded-lg': true,
+        'w-full': true,
+        border: showQuantityChanger,
+        'border-red': showQuantityChanger
+      }"
     />
     } @else {
     <img
       [src]="product.image.desktop"
       alt="image of product"
-      class="rounded-lg w-full"
+      [ngClass]="{
+        'rounded-lg': true,
+        'w-full': true,
+        border: showQuantityChanger,
+        'border-red': showQuantityChanger
+      }"
     />
     }
 
     <div
+      class="flex justify-between items-center gap-8 absolute -bottom-6 bg-red rounded-full py-2 px-2"
+    >
+      @if (showQuantityChanger) {
+
+      <div
+        class="rounded-full border-2 border-white flex justify-center items-center p-2 h-6 w-6 cursor-pointer"
+        (click)="onQuantityDecrease(product)"
+      >
+        <h1 class="font-bold text-lg text-white">-</h1>
+      </div>
+      <h1 class="text-white text-preset4" (click)="onClick(product)">
+        {{ quantity }}
+      </h1>
+      <div
+        class="rounded-full border-2 border-white text-cyan-50 flex justify-center items-center p-2 h-6 w-6 cursor-pointer"
+        (click)="onQuantityIncrese(product)"
+      >
+        <h1 class="font-bold text-lg">+</h1>
+      </div>
+      }
+    </div>
+    @if (!showQuantityChanger) {
+    <div
       class="flex gap-4 absolute -bottom-6 bg-white border border-rose_400 rounded-full py-2 px-8"
+      (click)="onClick(product)"
     >
       <img src="assets/images/icon-add-to-cart.svg" alt="cart icon" />
       <h1 class="text-preset4 text-rose_900">Add to Cart</h1>
     </div>
+    }
   </div>
   <div class="my-8">
     <h1 class="text-rose_400 text-preset4">{{ product.category }}</h1>

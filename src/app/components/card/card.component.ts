@@ -1,14 +1,8 @@
-import {
-  Component,
-  HostListener,
-  Inject,
-  Input,
-  OnInit,
-  PLATFORM_ID,
-} from '@angular/core';
+import { Component, HostListener, Input, OnInit, Output } from '@angular/core';
 import { Product } from '../../model/product.interface';
-import { isPlatformBrowser, isPlatformServer } from '@angular/common';
 import { ScreenService } from '../../services/window.service';
+import { EventEmitter } from '@angular/core';
+import { CartService } from '../../services/cart.service';
 
 @Component({
   selector: 'app-card',
@@ -17,10 +11,14 @@ import { ScreenService } from '../../services/window.service';
 })
 export class CardComponent implements OnInit {
   @Input({ required: true }) product!: Product;
-
+  quantity: number = 1;
   screenSize!: number;
+  showQuantityChanger: boolean = false;
 
-  constructor(private screenService: ScreenService) {}
+  constructor(
+    private screenService: ScreenService,
+    private cartService: CartService
+  ) {}
 
   ngOnInit(): void {
     this.screenSize = this.screenService.getScreenWidth();
@@ -29,5 +27,23 @@ export class CardComponent implements OnInit {
   @HostListener('window:resize', ['$event'])
   onWindowResize() {
     this.screenSize = this.screenService.getScreenWidth();
+  }
+
+  onClick(product: Product) {
+    this.showQuantityChanger = true;
+    this.cartService.addToCart({ product, quantity: 1 });
+  }
+
+  onQuantityIncrese(product: Product) {
+    this.cartService.increaseProductQuantity(product);
+    this.quantity = this.quantity + 1;
+  }
+  onQuantityDecrease(product: Product) {
+    if (this.quantity <= 1) {
+      this.cartService.removeItemFromCart(product);
+      this.showQuantityChanger = !this.showQuantityChanger;
+    }
+    this.cartService.decreaseProductQuantity(product);
+    this.quantity = this.quantity - 1;
   }
 }
