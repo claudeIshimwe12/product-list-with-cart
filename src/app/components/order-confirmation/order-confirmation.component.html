@@ -1,5 +1,5 @@
 <div
-  class="md:mx-auto bg-white w-full md:w-11/12 lg:w-1/3 p-6 md:p-8 z-50 rounded-xl min-h-full lg:max-h-[684px]"
+  class="md:mx-auto bg-white w-full md:w-11/12 lg:w-1/3 p-6 md:p-8 z-50 rounded-xl min-h-full lg:min-h-[300px]"
 >
   <img src="assets/images/icon-order-confirmed.svg" alt="order confirm icon" />
   <h1 class="text-rose_900 text-preset3 font-bold lg:text-preset2">
@@ -9,7 +9,7 @@
 
   <!-------- Cart Items          -->
   <div
-    class="overflow-scroll max-h-[240px] md:max-h-[486px] lg:max-h-[340px] hide-scroll-bar"
+    class="overflow-scroll max-h-[240px] md:max-h-[486px] lg:max-h-[240px] hide-scroll-bar"
   >
     @for (product of cart$ | async; track $index) {
     <div

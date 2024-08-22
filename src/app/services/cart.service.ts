@@ -9,8 +9,11 @@ import { Cart } from '../models/cart.interface';
 export class CartService {
   private cartSubject = new BehaviorSubject<Cart[]>([]);
   private totoalSubject = new BehaviorSubject<number>(0);
+  private showQuantityChangerSubject = new BehaviorSubject<boolean>(false);
   products$: Observable<Cart[]> = this.cartSubject.asObservable();
   total$: Observable<number> = this.totoalSubject.asObservable();
+  toggleQuantity$: Observable<boolean> =
+    this.showQuantityChangerSubject.asObservable();
 
   addToCart(product: Cart): void {
     let currentProducts: Cart[] = [];
@@ -110,5 +113,15 @@ export class CartService {
   emptyCart() {
     this.cartSubject.next([]);
     this.totoalSubject.next(0);
+  }
+  getQueantityChanger() {
+    return this.toggleQuantity$;
+  }
+
+  toggleToTrue() {
+    this.showQuantityChangerSubject.next(true);
+  }
+  toggleToFalse() {
+    this.showQuantityChangerSubject.next(false);
   }
 }

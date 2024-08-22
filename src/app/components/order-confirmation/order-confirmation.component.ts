@@ -20,5 +20,6 @@ export class OrderConfirmationComponent {
   onStartNewOrder() {
     this.cartService.emptyCart();
     this.cartEmpty.emit();
+    location.reload();
   }
 }
