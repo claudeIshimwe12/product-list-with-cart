@@ -1,10 +1,10 @@
 import { Component, HostListener, Input, OnInit, Output } from '@angular/core';
-import { Product } from '../../model/product.interface';
+import { Product } from '../../models/product.interface';
 import { ScreenService } from '../../services/window.service';
 import { EventEmitter } from '@angular/core';
 import { CartService } from '../../services/cart.service';
 import { Observable } from 'rxjs';
-import { Cart } from '../../model/cart.interface';
+import { Cart } from '../../models/cart.interface';
 
 @Component({
   selector: 'app-card',
