@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Output } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Cart } from '../../model/cart.interface';
+import { Cart } from '../../models/cart.interface';
 import { CartService } from '../../services/cart.service';
 
 @Component({

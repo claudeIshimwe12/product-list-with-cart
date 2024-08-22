@@ -1,8 +1,8 @@
 import { Component, EventEmitter, Output } from '@angular/core';
 import { CartService } from '../../services/cart.service';
-import { Product } from '../../model/product.interface';
+import { Product } from '../../models/product.interface';
 import { isEmpty, Observable, pipe } from 'rxjs';
-import { Cart } from '../../model/cart.interface';
+import { Cart } from '../../models/cart.interface';
 
 @Component({
   selector: 'app-cart',
