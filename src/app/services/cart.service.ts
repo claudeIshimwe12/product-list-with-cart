@@ -80,7 +80,7 @@ export class CartService {
     this.totoalSubject.next(currentPrice - product.price);
     this.products$
       .pipe(
-        take(1), // Automatically unsubscribe after the first emission
+        take(1),
         map((currentProducts: Cart[]) => {
           return currentProducts.filter(
             (cartItem) => cartItem.product.name !== product.name
