@@ -9,11 +9,8 @@ import { Cart } from '../models/cart.interface';
 export class CartService {
   private cartSubject = new BehaviorSubject<Cart[]>([]);
   private totoalSubject = new BehaviorSubject<number>(0);
-  private showQuantityChangerSubject = new BehaviorSubject<boolean>(false);
   products$: Observable<Cart[]> = this.cartSubject.asObservable();
   total$: Observable<number> = this.totoalSubject.asObservable();
-  toggleQuantity$: Observable<boolean> =
-    this.showQuantityChangerSubject.asObservable();
 
   addToCart(product: Cart): void {
     let currentProducts: Cart[] = [];
@@ -53,40 +50,31 @@ export class CartService {
         this.cartSubject.next(updatedProducts);
       });
   }
-  decreaseProductQuantity(product: Product): void {
+  decreaseProductQuantity(product: Cart): void {
     let currentPrice: number = 0;
 
     this.total$.subscribe((data) => (currentPrice = data));
 
-    this.totoalSubject.next(currentPrice - product.price);
-    this.products$
-      .pipe(
-        take(1),
-        map((currentProducts: Cart[]) => {
-          return currentProducts.map((cartItem) => {
-            if (cartItem.product.name === product.name) {
-              return { ...cartItem, quantity: cartItem.quantity - 1 };
-            }
-            return cartItem;
-          });
-        })
-      )
-      .subscribe((updatedProducts) => {
-        this.cartSubject.next(updatedProducts);
-      });
+    this.products$.subscribe((data) => {
+      if (data.includes(product)) {
+        this.totoalSubject.next(currentPrice - product.product.price);
+      }
+    });
   }
-  removeItemFromCart(product: Product): void {
+  removeItemFromCart(product: Cart): void {
     let currentPrice: number = 0;
 
     this.total$.subscribe((data) => (currentPrice = data));
 
-    this.totoalSubject.next(currentPrice - product.price);
+    this.totoalSubject.next(
+      currentPrice - product.product.price * product.quantity
+    );
     this.products$
       .pipe(
         take(1),
         map((currentProducts: Cart[]) => {
           return currentProducts.filter(
-            (cartItem) => cartItem.product.name !== product.name
+            (cartItem) => cartItem.product.name !== product.product.name
           );
         })
       )
@@ -113,15 +101,5 @@ export class CartService {
   emptyCart() {
     this.cartSubject.next([]);
     this.totoalSubject.next(0);
-  }
-  getQueantityChanger() {
-    return this.toggleQuantity$;
-  }
-
-  toggleToTrue() {
-    this.showQuantityChangerSubject.next(true);
-  }
-  toggleToFalse() {
-    this.showQuantityChangerSubject.next(false);
   }
 }

@@ -1,27 +1,70 @@
-# ProductListWithCart
+# Angular Products Page with Cart
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 18.0.6.
+This project is a simple Angular application that displays a products page with an integrated cart on the right side. Users can add products to the cart, adjust the quantity of products, and remove products from the cart. The project demonstrates the use of Angular components, services, and state management to build a responsive and interactive shopping experience.
 
-## Development server
+### Please follow this link to preview the final project https://small-product-cart-angular.netlify.app/
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+## Table of Contents
 
-## Code scaffolding
+- [Features](#features)
+- [Installation](#installation)
+- [Usage](#usage)
+- [Technologies Used](#technologies-used)
+- [Contributing](#contributing)
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+## Features
 
-## Build
+- **Add to Cart**: Users can add products to the cart by clicking the "Add to Cart" button on a product card.
+- **Remove from Cart**: Users can remove products from the cart by clicking the "Remove" button in the cart.
+- **Quantity Adjustment**: Users can increase or decrease the quantity of a product in the cart using the "+" and "-" buttons on the product card.
+- **Responsive Design**: The layout is responsive, ensuring a smooth experience across different screen sizes.
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+## Installation
 
-## Running unit tests
+To run this project locally, follow these steps:
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+1. **Clone the repository**:
 
-## Running end-to-end tests
+   ```bash
+   git clone https://github.com/your-username/angular-products-page.git
+   cd angular-products-page
+   ```
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+2. **Install dependencies**:
 
-## Further help
+   ```bash
+   npm install
+   ```
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+3. **Run the development server**:
+   ```bash
+   ng serve
+   ```
+   The application will be available at `http://localhost:4200/`.
+
+## Usage
+
+Once the application is running:
+
+1. Browse the products on the main page.
+2. Click "Add to Cart" to add a product to the cart.
+3. Use the "+" and "-" buttons on the product card to adjust the quantity in the cart.
+4. Click "Remove" to remove a product from the cart.
+
+## Technologies Used
+
+- **Angular**: A framework for building dynamic web applications.
+- **TypeScript**: A statically typed superset of JavaScript.
+- **Tailwind CSS**: A utility-first CSS framework for styling.
+- **RxJS**: A library for reactive programming using observables.
+- **NgRx**: Possibly there is going to be an NgRx integration in this project, you can check in the branches for the one named feat/rxjs-implementation
+
+## Contributing
+
+Contributions are welcome! Please feel free to submit a Pull Request.
+
+1. Fork the repository.
+2. Create a new branch (`git checkout -b feature-branch`).
+3. Commit your changes (`git commit -m 'Add a new feature'`).
+4. Push to the branch (`git push origin feature-branch`).
+5. Create a Pull Request.

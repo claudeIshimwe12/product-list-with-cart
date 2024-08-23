@@ -44,10 +44,10 @@ export class CardComponent implements OnInit {
   }
   onQuantityDecrease(product: Product) {
     if (this.quantity <= 1) {
-      this.cartService.removeItemFromCart(product);
+      this.cartService.removeItemFromCart({ product, quantity: 1 });
       this.showQuantityChanger = !this.showQuantityChanger;
     } else {
-      this.cartService.decreaseProductQuantity(product);
+      this.cartService.decreaseProductQuantity({ product, quantity: 1 });
       this.quantity = this.quantity - 1;
     }
   }

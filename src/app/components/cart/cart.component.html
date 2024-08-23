@@ -29,10 +29,10 @@
         </div>
       </div>
       <img
-        src="assets/images/icon-remove-item.svg"
-        class="cursor-pointer"
+        src="assets/images/x-circle.svg"
+        class="cursor-pointer hover:scale-110 transition-transform duration-200"
         alt="remove item icon"
-        (click)="removeItem(product.product)"
+        (click)="removeItem(product)"
       />
     </div>
     } @if ((cart$ | async)?.length !== 0) {
@@ -54,7 +54,7 @@
       </h1>
     </div>
     <button
-      class="w-full bg-red px-4 py-2 text-white rounded-full text-preset3 font-bold"
+      class="w-full bg-red px-4 py-2 text-white rounded-full text-preset3 font-bold hover:bg-white hover:border hover:text-rose_500 hover:border-red transition delay-300 ease-in-out"
       (click)="confirmOrder()"
     >
       Confirm Order

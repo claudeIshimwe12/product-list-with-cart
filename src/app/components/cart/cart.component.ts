@@ -24,7 +24,7 @@ export class CartComponent {
     this.numberOfProducts = this.cartService.getTotalProductCount();
   }
 
-  removeItem(product: Product) {
+  removeItem(product: Cart) {
     this.cartService.removeItemFromCart(product);
   }
 
